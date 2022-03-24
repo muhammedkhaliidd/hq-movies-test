@@ -1,0 +1,141 @@
+@use "../../scss/" as *;
+
+.banner {
+  width: 100%;
+  height: 50vh;
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  &::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    @include overlay();
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100px;
+    background-image: linear-gradient(to top, $body-bg, rgba($black, 0));
+  }
+}
+
+.movie-content {
+  @include flex(flex-start, flex-start);
+  max-width: 1260px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: -200px;
+  position: relative;
+  padding: 0 2rem;
+
+  &__poster {
+    // width: 30%;
+    flex: 1;
+
+    @include mobile {
+      display: none;
+    }
+
+    &__img {
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      border-radius: $border-radius;
+
+      padding-top: 155%;
+    }
+  }
+  &__info {
+    width: 70%;
+    padding: 0 2rem;
+    position: relative;
+
+    @include mobile {
+      width: 100%;
+      padding: 0;
+    }
+
+    // All Direct Children
+    & > * {
+      margin-bottom: 2rem;
+    }
+
+    .title {
+      font-size: 4rem;
+      line-height: 1;
+    }
+    .genres {
+      @include flex(center, flex-start);
+      display: flex;
+      flex-wrap: wrap;
+      max-width: 100%;
+      overflow: hidden;
+      // All Direct Children except the First
+      & > * ~ * {
+        margin-left: 0.5rem;
+      }
+
+      &__item {
+        padding: 0.4rem 1.5rem;
+        border: 2px solid $white;
+        font-size: 0.8rem;
+        font-weight: 600;
+        border-radius: $border-radius;
+        background-color: $body-bg;
+        width: fit-content;
+
+        @include tablet {
+          padding: 0.3rem 1rem;
+        }
+      }
+    }
+
+    p.overview {
+      margin-bottom: 5px;
+    }
+
+    .cast .section__header {
+      margin-bottom: 5px;
+    }
+  }
+}
+
+.casts {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+  gap: 10px;
+
+  &__item {
+    &__img {
+      padding-top: 160px;
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+      border-radius: 4px;
+      margin-bottom: 0.5rem;
+    }
+
+    &__name {
+      font-size: 0.8rem;
+      text-align: center;
+    }
+  }
+}
+
+.video {
+  margin-bottom: 3rem;
+
+  &__title {
+    margin-bottom: 1.5rem;
+  }
+}
